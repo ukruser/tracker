@@ -1,0 +1,52 @@
+.tracker-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: var(--border-l);
+	font-size: 1.2rem;
+	font-weight: bold;
+	line-height: 6rem;
+	
+	&--active {
+		background-color: #fdfdf6;
+		color: var(--color-green);
+	}
+	
+	&:last-child {
+		border-bottom: var(--border-l);
+	}
+	
+	&__title {
+		flex-grow: 1;
+		margin: 0 2rem;
+	}
+	
+	&__timer {
+		flex-grow: 0;
+		margin: 0 3rem;
+	}
+	
+	&__buttons {
+		flex-grow: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		
+		& button {
+			margin: 0 .7rem;
+			width: 2.7rem;
+			height: 2.7rem;
+			background: transparent;
+			border-radius: 50%;
+			border: none;
+			cursor: pointer;
+		}
+		
+		& .IconPlay,
+		& .IconPause,
+		& .IconRemove {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}

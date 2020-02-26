@@ -1,0 +1,38 @@
+/************ VARIABLES *************/
+:root {
+	//colors
+	--color-green: #3faf6c;
+	--color-black: #000000;
+	--color-white-dark: #fdfdf6;
+	--color-gray-d: #7f7f7f;
+	--color-gray-m: #999999;
+	--color-gray-l: #e5e5e5;
+	
+	//font-size
+	--default-font-size: 1.6rem;
+	
+	//borders
+	--border-d: 1px solid var(--color-gray-d);
+	--border-l: 1px solid var(--color-gray-l);
+}
+
+/************ BASE *************/
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	box-sizing: border-box;
+	font-family: Arial, sans-serif;
+	font-weight: 400;
+	line-height: 1.6;
+	color: var(--color-black);
+}
