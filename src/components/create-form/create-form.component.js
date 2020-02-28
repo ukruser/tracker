@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { addTracker } from '../../redux/actions';
 
 import './create-form.styles.scss';
 
@@ -17,10 +20,19 @@ class CreateForm extends React.Component {
 	handleChange(event) {
 		this.setState({value: event.target.value});
 	}
-
+	
 	handleSubmit(event) {
-		console.log(this.state.value);
 		event.preventDefault();
+		const startDateTime = new Date();
+		const title = this.state.value !== '' ? this.state.value : `untitled ${startDateTime.toLocaleString()}`;
+		const item = {
+			id: startDateTime,
+			title,
+			active: true,
+			pauseTime: 0,
+			playTime: 0
+		}
+		this.props.addTracker(item);
 		this.setState({value: ''});
 	}
 
@@ -47,4 +59,8 @@ class CreateForm extends React.Component {
 	}	
 };
 
-export default CreateForm;
+const mapDispatchToProps = dispatch => ({
+  addTracker: item => dispatch(addTracker(item))
+});
+
+export default connect(null, mapDispatchToProps)(CreateForm);

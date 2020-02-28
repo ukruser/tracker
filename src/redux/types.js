@@ -1,0 +1,8 @@
+const ActionTypes = {
+	ADD_TRACKER: 'ADD_TRACKER',
+	REMOVE_TRACKER: 'REMOVE_TRACKER',
+	PAUSE_TRACKER: 'PAUSE_TRACKER',
+	RESUME_TRACKER: 'RESUME_TRACKER',
+};
+
+export default ActionTypes;

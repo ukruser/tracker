@@ -1,21 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import TrackerItem from '../item/item.component';
 
 import './items-list.styles.scss';
 
-const ItemsList = ({ items }) => {
+class ItemsList extends React.Component {
 	
-	return (
-		<div className="items-list">
-			{
-				items.length > 0 ? items.map(item => (
-					<TrackerItem key={item.id} data={item} />
-				)) : 
-					<div className="items-list__msg">no trackers</div>
-			}
-		</div>
-	);
-};
+	render() {
+		const { items } = this.props;
+		return (
+			<div className="items-list">
+				{
+					items.length > 0 ? items.map(item => (
+						<TrackerItem key={item.id} data={item} />
+					)) : 
+						<div className="items-list__msg">no trackers</div>
+				}
+			</div>
+		);
+	};
+}
 
-export default ItemsList;
+const mapStateToProps = state => ({
+	items: state.tracker.items
+});
+
+export default connect(mapStateToProps)(ItemsList);
