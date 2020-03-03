@@ -10,12 +10,7 @@ export const removeTracker = id => ({
 	payload: id
 });
 
-export const pauseTracker = id => ({
+export const pauseResumeTracker = item => ({
 	type: ActionTypes.PAUSE_TRACKER,
-	payload: id
-});
-
-export const resumeTracker = id => ({
-	type: ActionTypes.RESUME_TRACKER,
-	payload: id
+	payload: item
 });

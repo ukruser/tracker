@@ -8,7 +8,7 @@
 	line-height: 6rem;
 	
 	&--active {
-		background-color: #fdfdf6;
+		background-color: var(--color-red-l);
 		color: var(--color-green);
 	}
 	
@@ -48,6 +48,10 @@
 		& .IconRemove {
 			width: 100%;
 			height: 100%;
+		}
+		
+		& .IconRemove {
+			fill: var(--color-red-m);
 		}
 	}
 }

@@ -24,13 +24,16 @@ class CreateForm extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		const startDateTime = new Date();
+		const startInMs = startDateTime.getTime();
 		const title = this.state.value !== '' ? this.state.value : `untitled ${startDateTime.toLocaleString()}`;
 		const item = {
-			id: startDateTime,
+			id: startInMs,
 			title,
 			active: true,
 			pauseTime: 0,
-			playTime: 0
+			playTime: 0,
+			pauseStartTime: 0,
+			playStartTime: startInMs
 		}
 		this.props.addTracker(item);
 		this.setState({value: ''});

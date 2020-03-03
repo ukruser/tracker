@@ -26,6 +26,11 @@ const trackerReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				items: state.items.filter(({ id }) => id !== action.payload)
 			}
+		case ActionTypes.PAUSE_TRACKER:
+			return {
+				...state,
+				items: [...state.items.filter(({ id }) => id !== action.payload.id), action.payload]
+			}
 		default:
 			return state;
 	}

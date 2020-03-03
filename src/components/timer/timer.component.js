@@ -10,7 +10,7 @@ class Timer extends React.Component {
 	}
 	
 	componentDidMount() {
-		this.intervalID = setInterval(() => this.timerRun(this.props.start),1000);
+		this.intervalID = setInterval(() => this.timerRun(this.props.data),1000);
 	}
 	
 	componentWillUnmount() {
@@ -21,11 +21,17 @@ class Timer extends React.Component {
 		return timeValue < 10 ? `0${timeValue}` : timeValue;
 	}
 	
-	timerRun(startTime) {
-		const difference = new Date() - new Date(startTime);
+	timerRun(item) {
 		let hours = '00';
 		let minutes = '00';
 		let seconds = '00';
+		let difference = 0;
+		
+		if(item.active) {
+			difference = (new Date() - new Date(item.playStartTime)) + item.playTime;
+		} else {
+			difference = item.playTime;
+		}
 		
 		if (difference > 0) {
 			hours = this.formatTime(Math.floor(difference / (1000 * 60 * 60)));

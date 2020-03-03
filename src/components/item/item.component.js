@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { removeTracker } from '../../redux/actions';
+import { removeTracker, pauseResumeTracker } from '../../redux/actions';
 
 import Timer from '../timer/timer.component';
 import { IconPlay, IconPause, IconRemove } from '../../assets/icons';
@@ -13,6 +13,7 @@ class TrackerItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.handleOnClickRemoveBtn = this.handleOnClickRemoveBtn.bind(this);
+		this.handleOnClickPauseResumeBtn = this.handleOnClickPauseResumeBtn.bind(this);
 	}
 	
 	handleOnClickRemoveBtn() {
@@ -20,17 +21,24 @@ class TrackerItem extends React.Component {
 		removeTracker(data.id);
 	}
 	
-	handlePause() {
-		const pauseStart = new Date();
-		const playTime = new Date() - new Date(this.props.data.playTime);
-	}
-	
 	handleResume() {
+		const { data, resumeTracker } = this.props;
 		
 	}
 	
 	handleOnClickPauseResumeBtn() {
-		console.log('pause');
+		const { data, pauseResumeTracker } = this.props;
+		let item = { ...data };
+		if (item.active === true) {
+			item.pauseStartTime = new Date().getTime();
+			item.playTime = (new Date() - new Date(item.playStartTime)) + item.playTime;
+			item.active = false;
+		} else {
+			item.playStartTime = new Date().getTime();
+			item.pauseTime = (new Date() - new Date(item.pauseStartTime)) + item.pauseTime;
+			item.active = true;
+		}
+		pauseResumeTracker(item);
 	}
 	
 	render() {
@@ -39,7 +47,7 @@ class TrackerItem extends React.Component {
 			<div className={`tracker-item ${data.active ? 'tracker-item--active' : ''}`}>
 				<div className='tracker-item__title'>{data.title}</div>
 				<div className='tracker-item__timer'>
-					<Timer start={data.id} />
+					<Timer data={data} />
 				</div>
 				<div className='tracker-item__buttons'>
 					<button onClick={this.handleOnClickPauseResumeBtn} className="play-pause-btn play">
@@ -55,7 +63,8 @@ class TrackerItem extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  removeTracker: id => dispatch(removeTracker(id))
+	removeTracker: id => dispatch(removeTracker(id)),
+	pauseResumeTracker: item => dispatch(pauseResumeTracker(item))
 });
 
 export default connect(null, mapDispatchToProps)(TrackerItem);
