@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import TrackerItem from '../item/item.component';
 
-import './items-list.styles.scss';
-
 class ItemsList extends React.Component {
 	
 	render() {
